@@ -1,12 +1,9 @@
-'''基础库'''
 import itertools
 from tqdm import tqdm
 import torch
 import time
 import pandas as pd
-'''自建库'''
 from Training import *
-'''系统设置'''
 from PIL import ImageFile
 ImageFile.LOAD_TRUNCATED = True
 import warnings
