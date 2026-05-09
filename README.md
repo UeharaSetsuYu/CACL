@@ -1,5 +1,10 @@
-Complementarity-driven Adversarial Consistency Learning for Multi-view Representation Disentanglement <b>  (COMING SOON) </b>
+<b> Revisiting Multi-view Representation Disentanglement: Complementarity-driven Adversarial Consistency Learning  </b>
+
+<b>  (COMING SOON) </b>
 
 Running:
 ```bash
-python Run_model.py 
+python Run_model.py
+
+
+
