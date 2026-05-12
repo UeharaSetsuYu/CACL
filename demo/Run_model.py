@@ -49,7 +49,8 @@ def Main_Leaning(args, dataset_name, config):
 def main():
 
     dataset = { 
-        1: "BDGP",                  # 2 views, it`s across view datas   
+        0: "BDGP",                  # 2 views, it`s across view datas   
+        1: "NGs",                    
     }
     args = parse_args()
     dataset_name = dataset[args.datasets]  # 指明需要使用的数据集，这里的--dataset 中默认为0，即Caltech101-20数据集
