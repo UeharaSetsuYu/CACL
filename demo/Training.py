@@ -252,7 +252,7 @@ def CRFN_Adversarial(model, data_list, view_num, Criterion, args, device, optimi
 
     share_label = torch.full((z_share[0].shape[0], ), 0, dtype=torch.long, device=device)
     aplha = args.epsilon
-    eta = 10
+    eta = args.eta
     for view in range(view_num):
         specific_label = torch.full((z_share[0].shape[0],), view + 1, dtype=torch.long, device=device)
         specific_logit = model.discriminator(z_con[view].detach())
