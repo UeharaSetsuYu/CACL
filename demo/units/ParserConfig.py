@@ -18,6 +18,7 @@ def parse_args():
     parser.add_argument('--epsilon', type=float, default=0.7, help='hyper-parameters')
     parser.add_argument('--beta', type=int, default=3, help='hyper-parameters')
     parser.add_argument('--times', type=int, default=1, help='training times')
+    parser.add_argument('--eta', type=int, default=10, help='hyper-parameters')
     args = parser.parse_args()
 
     return args
