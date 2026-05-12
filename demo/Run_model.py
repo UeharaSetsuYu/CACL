@@ -53,11 +53,23 @@ def main():
         1: "NGs",                    
     }
     args = parse_args()
-    dataset_name = dataset[args.datasets]  # 指明需要使用的数据集，这里的--dataset 中默认为0，即Caltech101-20数据集
+    dataset_name = dataset[args.datasets]  
     config = get_default_config(dataset_name)
     robust = {'acc': [], 'ari': [], 'nmi': [], 'pur': [] }
     seed = 5
 
+    if args.datasets == 0:
+        args.seed = 5
+        args.beta = 3
+        args.epsilon = 0.8
+        args.eta = 10
+    elif args.datasets == 1:
+        args.seed = 5
+        args.beta = 3
+        args.epsilon = 0.8
+        args.eta = 10
+        args.batch_size = 64
+    
     print("============ sensitivity ===========")
     for i in range(args.times):
         print(f"Seed: {seed}")
