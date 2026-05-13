@@ -1,6 +1,15 @@
 <b> Revisiting Multi-view Representation Disentanglement: Complementarity-driven Adversarial Consistency Learning  </b>
 
-This repository currently provides the basic model architecture and the core training pipeline. The complete code, detailed documentation, and <b> further updates will be officially released after the acceptance and publication of our paper.</b>
+
+<table>
+  <tr>
+    <td bgcolor="#E1F5FE">
+      <b>⚠：</b> This repository currently provides the basic model architecture and the core training pipeline. The complete code, detailed documentation, and <b> further updates will be officially released after the acceptance and publication of our paper.</b>  
+    </td>
+  </tr>
+</table>
+
+
 
 ## Prerequisites
 
