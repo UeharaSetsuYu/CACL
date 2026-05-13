@@ -7,7 +7,9 @@
 Before running this project, ensure you have the following installed:
 
 Python  3.9.7 
+
 torch==2.6.0+cu123
+
 numpy==1.26.4
 
 ## Datasets 
