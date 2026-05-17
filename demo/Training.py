@@ -39,11 +39,7 @@ def reconstruction(model, data_list, view_num, Criterion, optimizer, target_list
         loss_list.append(Criterion.forward_mse(x_hat[view], data_list[view]))
     loss = sum(loss_list)  # Reconstruction Loss only, now
     loss_1 += loss.item() / view_num
- 
-    # if Flag:
-    #     visualize_raw_images_grid(X[0], X[1], target_list[0], mask, 5)
-
-
+  
     loss.backward()
     optimizer.step()
 
@@ -84,12 +80,7 @@ def Classification(model, data_list, view_num, Criterion, optimizer, y):
     # CE_loss = nn.CrossEntropyLoss()
     # CE_loss = Criterion.forward_
     for i in range(view_num):
-
-        #         q_v = pseudo_list[i]
-
-        #         loss_list_cla.append(CE_loss(q_v, y[i]))
-        # loss_list_cla.append(Criterion.forward_Focal_CE(q_v, y[i]))
-
+ 
         for j in range(i + 1, view_num):
             q_m = pseudo_list[i]
             q_n = pseudo_list[j]
@@ -99,8 +90,7 @@ def Classification(model, data_list, view_num, Criterion, optimizer, y):
     loss_1 = 0.5 * (sum(loss_list)) / view_num
 
     for i in range(view_num):
-        q_v = pseudo_list[i]
-        # loss_list_cla.append(CE_loss(q_v, y[i]))
+        q_v = pseudo_list[i] 
         loss_list_cla.append(Criterion.forward_Focal_CE(q_v, y[i]))
 
     loss_2 = sum(loss_list_cla) / view_num
@@ -505,16 +495,7 @@ def main_train(args, dataset_name, config, device):
               f'ari: {accumulated_metrics["bestari"]}, nmi: {accumulated_metrics["bestnmi"]}, '
               f'pur: {accumulated_metrics["bestpur"]:.4f}')
 
-    # import time
-    # torch.save(bestmodel_metrics['bestModel'],
-    #            './AAA_Bestmodel_Ablation/' + dataset_name + '_' + 'ACC-' + str(accumulated_metrics["bestacc"]) + time.strftime(
-    #                "_%Y%m%d-%H%M%S") + '.pth')
-
-
-    # print(f'Best clustering performance: acc: {accumulated_metrics["bestacc"]}, '
-    #       f'ari: {accumulated_metrics["bestari"]}, nmi: {accumulated_metrics["bestnmi"]}, '
-    #       f'sc: {accumulated_metrics["bestsc"]:.4f}, pur: {accumulated_metrics["bestpur"]:.4f}, f_mea: {accumulated_metrics["bestfmea"]:.4f}')
-
+   
     return accumulated_metrics, loss_metrics
 
 def Evaluation_classifcation(model, test_loader, device, accumulated_metrics, view_num, bestmodel_metrics, epoch):
@@ -539,12 +520,8 @@ def Evaluation_classifcation(model, test_loader, device, accumulated_metrics, vi
 
             '''Clustering Result Recording'''
             all_labels_true.extend(label)
-            all_labels_pred.extend(y)
-
-        # pseudo_clustering([], all_labels_pred, all_labels_true, accumulated_metrics['acc'],
-        #                   accumulated_metrics['ari'],
-        #                   accumulated_metrics['nmi'],
-        #                   accumulated_metrics['precision'], accumulated_metrics['pur'], accumulated_metrics['f_mea'])
+            all_labels_pred.extend(y) 
+            
         acc, pre, f1 = get_supervised_metrics(all_labels_true, all_labels_pred)
         accumulated_metrics['acc'].append(acc)
         accumulated_metrics['precision'].append(pre)
@@ -560,6 +537,7 @@ def Evaluation_classifcation(model, test_loader, device, accumulated_metrics, vi
                     bestModel = model.state_dict()
 
                     bestmodel_metrics['bestModel'] = bestModel
+                    
 def Evaluation(model, test_loader, device, accumulated_metrics, view_num, bestmodel_metrics, epoch):
 
     all_labels_true, all_labels_pred = [], []
@@ -571,11 +549,7 @@ def Evaluation(model, test_loader, device, accumulated_metrics, view_num, bestmo
             data_list, target_list = zip(*batch)
             data_list = list(data_list)
             for i in range(view_num): data_list[i] = data_list[i].to(device)
-            _, latent_share, latent_specific, hlz, z_con, specific_prob, share_prob, pseudo_list, _, z_shared = model(data_list)
-
-            # im.append(compute_mmd(z_shared, z_con, view_num))
-
-
+            _, latent_share, latent_specific, hlz, z_con, specific_prob, share_prob, pseudo_list, _, z_shared = model(data_list) 
 
             '''Pseudo-Clustering Result'''
             p = torch.stack(pseudo_list)
