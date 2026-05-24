@@ -1,7 +1,5 @@
-<b> Revisiting Multi-view Representation Disentanglement: Complementarity-driven Adversarial Consistency Learning  </b>
+#  Revisiting Multi-view Representation Disentanglement: Complementarity-driven Adversarial Consistency Learning 
 
-
- 
 
 ## Prerequisites
 
