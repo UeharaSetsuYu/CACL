@@ -18,7 +18,7 @@ def load_data(dataset_name):
             view_num = 2, classes = 5, samples = 2500
         '''
         view_num = 2
-        mat = sio.loadmat('D:\Data_Mining\Code\Datasets\BDGP\BDGP.mat')
+        mat = sio.loadmat('./data/BDGP.mat')
         X = [normalize(mat['X1'].astype(np.float32), flag='row_vector'),
              normalize(mat['X2'].astype(np.float32), flag='row_vector')]
         y = np.squeeze(mat['Y']).astype('int')
@@ -68,7 +68,7 @@ def load_data(dataset_name):
             contains 10000 instance in 10 clusters for 2 views and feature dimension is  [784, 256]
         '''
         X_list = []
-        mat = sio.loadmat('D:\Data_Mining\Code\Datasets\Hdigit\Hdigit.mat')
+        mat = sio.loadmat('./data/Hdigit.mat')
         X = mat['data'][0]
         for view in range(view_num):
             X_list.append(normalize(X[view].T))
@@ -79,7 +79,7 @@ def load_data(dataset_name):
     elif dataset_name == 'cifar10':
         '''contains 50000 instance in 10 clusters for 3 views and feature dimension is  [512, 2048, 1024]'''
         X_list = []
-        mat = sio.loadmat('D:\Data_Mining\Code\Datasets\Cifer_10\cifar10.mat')
+        mat = sio.loadmat('./data/cifar10.mat')
         X = mat['data']
         for view in range(view_num):  # view_num = 3
             X_list.append(normalize(X[view][0].T, flag='row_vector'))  # sigma, row
