@@ -18,9 +18,9 @@ NGs are small-shot datasets, which can be found in the [`./demo/data/`](./demo/d
 
 ## Usage
 
-Running by NGs:
+Running by BBCSport:
 ```bash
-python Run_model.py --datasets 1 --view_num 3  
+python Run_model.py --datasets 2 --view_num 2 
 
 ```
 
