@@ -3,8 +3,7 @@ from tqdm import tqdm
 import torch
 import time
 import pandas as pd
-from Training import *
-from PIL import ImageFile
+from Training import * 
 ImageFile.LOAD_TRUNCATED = True
 import warnings
 warnings.filterwarnings("ignore")
@@ -50,7 +49,12 @@ def main():
 
     dataset = { 
         0: "BDGP",                  # 2 views, it`s across view datas   
-        1: "NGs",                    
+        1: "NGs",       
+        2: "BBCSport",              # 2 views, 64 batchsize
+        3: "Hdigit",
+        4: "Cora",
+        5: "Movies", 
+        6: "CIFAR-10",
     }
     args = parse_args()
     dataset_name = dataset[args.datasets]  
@@ -69,9 +73,14 @@ def main():
         args.epsilon = 0.8
         args.eta = 10
         args.batch_size = 64
-    
-    print("============ sensitivity ===========")
+    elif args.datasets == 2:
+        args.seed = 5
+        args.beta = 3
+        args.epsilon = 0.8
+        args.eta = 10
+        args.batch_size = 64 
     for i in range(args.times):
+        print(f"============ Trainning {i + 1} time ===========")
         print(f"Seed: {seed}")
         args.seed = seed
         data = Main_Leaning(args, dataset_name, config)
@@ -85,12 +94,7 @@ def main():
           f"ARI: Mean-{np.mean(robust['ari']):.4f}, std-{np.std(robust['ari']):.4f},"
           f"NMI: Mean-{np.mean(robust['nmi']):.4f}, std-{np.std(robust['nmi']):.4f},"
           f"PUR: Mean-{np.mean(robust['pur']):.4f}, std-{np.std(robust['pur']):.4f},")
-    print(robust)
-
-    # save result
-    df = pd.DataFrame(robust)
-    df.to_csv(dataset_name + '_incomplete_result.csv', index=False)
-
+    print(robust) 
 
 if __name__ == '__main__':
     start_time = time.time()
